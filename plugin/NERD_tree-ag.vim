@@ -1,7 +1,7 @@
 " ============================================================================
-" File:        NERD_tree-ack.vim
+" File:        NERD_tree-ag.vim
 " Description: Adds searching capabilities to NERD_Tree
-" Maintainer:  Mohammad Satrio <wolfaeon at gmail dot com>
+" Original Author:  Mohammad Satrio <wolfaeon at gmail dot com>
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -12,19 +12,19 @@
 
 
 " don't load multiple times
-if exists("g:loaded_nerdtree_ack")
+if exists("g:loaded_nerdtree_ag")
     finish
 endif
 
-let g:loaded_nerdtree_ack = 1
+let g:loaded_nerdtree_ag = 1
 
 " add the new menu item via NERD_Tree's API
 call NERDTreeAddMenuItem({
     \ 'text': '(s)earch directory',
     \ 'shortcut': 's',
-    \ 'callback': 'NERDTreeAck' })
+    \ 'callback': 'NERDTreeAg' })
 
-function! NERDTreeAck()
+function! NERDTreeAg()
     " get the current dir from NERDTree
     let cd = g:NERDTreeDirNode.GetSelected().path.str()
 
@@ -34,5 +34,5 @@ function! NERDTreeAck()
         echo 'Maybe another time...'
         return
     endif
-    exec "Ack! ".pattern." ".cd
+    exec "Ag! ".pattern." ".cd
 endfunction
