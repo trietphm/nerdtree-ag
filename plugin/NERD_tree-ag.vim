@@ -21,7 +21,12 @@ let g:loaded_nerdtree_ag = 1
 
 " add the new menu item via NERD_Tree's API
 call NERDTreeAddMenuItem({
-    \ 'text': '(s)earch directory',
+    \ 'text': 'search files, case s(e)nsitive',
+    \ 'shortcut': 'e',
+    \ 'callback': 'NERDTreeAckSensitive' })
+
+call NERDTreeAddMenuItem({
+    \ 'text': '(s)earch files, case insensitive',
     \ 'shortcut': 's',
     \ 'callback': 'NERDTreeAg' })
 
@@ -35,5 +40,18 @@ function! NERDTreeAg()
         echo 'Maybe another time...'
         return
     endif
-    exec "Ag! ".pattern." ".cd
+    exec "Ag! -i ".pattern." ".cd
+endfunction
+
+function! NERDTreeAgSensitive()
+    " get the current dir from NERDTree
+    let cd = g:NERDTreeDirNode.GetSelected().path.str()
+
+    " get the pattern
+    let pattern = input("Enter the pattern: ")
+    if pattern == ''
+        echo 'Maybe another time...'
+        return
+    endif
+    exec "Ag! '".pattern."' ".cd
 endfunction
