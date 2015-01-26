@@ -3,10 +3,12 @@
 This plugin add capability to search in folders via NERDtree. The search use ag.vim from the master branch (<https://github.com/epmatsw/ag.vim>).
 This is almost a copypaste from [Mohammad Satrio](https://github.com/tyok)'s [nerdtree-ack](https://github.com/tyok/nerdtree-ack). But use [the silver searcher](https://github.com/ggreer/the_silver_searcher) instead of Ack.
 
-## How to Install
+## Install
 
-1. Install ag.vim first from <https://github.com/epmatsw/ag.vim>. 
-1. Copy the plugin file to your `.vim/plugin` directory, or install via pathogen/vundle/VAM
+* Install [ag.vim](https://github.com/rking/ag.vim)
+* Install this plugin via your package manager (pathogen/vundle/VAM/plug-vim)
+
+    or just put the plugin file in your `.vim/plugin` directory
 
 ## How to Use
 
