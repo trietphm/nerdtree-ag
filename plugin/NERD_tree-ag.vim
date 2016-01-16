@@ -23,7 +23,7 @@ let g:loaded_nerdtree_ag = 1
 call NERDTreeAddMenuItem({
     \ 'text': 'search files, case s(e)nsitive',
     \ 'shortcut': 'e',
-    \ 'callback': 'NERDTreeAckSensitive' })
+    \ 'callback': 'NERDTreeAgSensitive' })
 
 call NERDTreeAddMenuItem({
     \ 'text': '(s)earch files, case insensitive',
