@@ -2,7 +2,7 @@
 " File:        NERD_tree-ag.vim
 " Description: Adds searching capabilities to NERD_Tree with the silver searcher
 " Original Author:  Mohammad Satrio <wolfaeon at gmail dot com>
-" Maintainer:  Taian Su<taiansu at gmail dot com>
+" Maintainer:  vtm9
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -19,18 +19,18 @@ endif
 
 let g:loaded_nerdtree_ag = 1
 
-" add the new menu item via NERD_Tree's API
-call NERDTreeAddMenuItem({
-    \ 'text': 'search files, case s(e)nsitive',
-    \ 'shortcut': 'e',
-    \ 'callback': 'NERDTreeAgSensitive' })
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(s)earch files, case insensitive',
+    \ 'text': '(s)earch files with Rg',
     \ 'shortcut': 's',
-    \ 'callback': 'NERDTreeAg' })
+    \ 'callback': 'NERDTreeRg' })
 
-function! NERDTreeAg()
+call NERDTreeAddMenuItem({
+    \ 'text': '(e) search files with Ack',
+    \ 'shortcut': 'e',
+    \ 'callback': 'NERDTreeAck' })
+
+function! NERDTreeRg()
     " get the current dir from NERDTree
     let cd = g:NERDTreeDirNode.GetSelected().path.str()
 
@@ -40,10 +40,10 @@ function! NERDTreeAg()
         echo 'Maybe another time...'
         return
     endif
-    exec "Ag! -i ".pattern." ".cd
+    exec "NERDRg ".pattern." ".cd
 endfunction
 
-function! NERDTreeAgSensitive()
+function! NERDTreeAck()
     " get the current dir from NERDTree
     let cd = g:NERDTreeDirNode.GetSelected().path.str()
 
@@ -53,5 +53,11 @@ function! NERDTreeAgSensitive()
         echo 'Maybe another time...'
         return
     endif
-    exec "Ag! '".pattern."' ".cd
+    exec "Ack -i ".pattern." ".cd
 endfunction
+
+command! -nargs=* NERDRg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --fixed-strings --smart-case --hidden --follow '.<q-args>, 1,
+  \   fzf#vim#with_preview('up:60%'), 1)
+
