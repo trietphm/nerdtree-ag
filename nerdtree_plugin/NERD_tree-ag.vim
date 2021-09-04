@@ -2,7 +2,7 @@
 " File:        NERD_tree-ag.vim
 " Description: Adds searching capabilities to NERD_Tree with the silver searcher
 " Original Author:  Mohammad Satrio <wolfaeon at gmail dot com>
-" Maintainer:  vtm9
+" Maintainer:  trietphm
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -20,27 +20,22 @@ endif
 let g:loaded_nerdtree_ag = 1
 
 
+call NERDTreeAddMenuSeparator()
 call NERDTreeAddMenuItem({
-    \ 'text': '(s)earch files with Rg',
-    \ 'shortcut': 's',
+    \ 'text': 'Search (f)iles with Rg',
+    \ 'shortcut': 'f',
     \ 'callback': 'NERDTreeRg' })
 
 call NERDTreeAddMenuItem({
-    \ 'text': '(e) search files with Ack',
-    \ 'shortcut': 'e',
+    \ 'text': '(s)earch files with Ack',
+    \ 'shortcut': 's',
     \ 'callback': 'NERDTreeAck' })
 
 function! NERDTreeRg()
     " get the current dir from NERDTree
     let cd = g:NERDTreeDirNode.GetSelected().path.str()
 
-    " get the pattern
-    let pattern = input("Enter the pattern: ")
-    if pattern == ''
-        echo 'Maybe another time...'
-        return
-    endif
-    exec "NERDRg ".pattern." ".cd
+    exec "NERDRg "" ".cd
 endfunction
 
 function! NERDTreeAck()

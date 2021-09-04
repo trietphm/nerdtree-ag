@@ -12,10 +12,13 @@ The code is almost a copypaste from [Mohammad Satrio](https://github.com/tyok)'s
 
 1. Open NERDtree
 1. Point to a directory
-1. Press `ms` or `me`
+1. Press `f` for `Rg` or `k` for `Ack`
 1. Enter search term (e.g. `control\ panel -i`)
 1. Profit!
 
 ## Features
 
 1. Use `rg` with `fzf`, or `ack.vim`
+
+Interactively typing your search term with fzf preview
+[Imgur](https://imgur.com/jY5LCh5)
