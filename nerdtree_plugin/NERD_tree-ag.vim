@@ -32,10 +32,7 @@ call NERDTreeAddMenuItem({
     \ 'callback': 'NERDTreeAck' })
 
 function! NERDTreeRg()
-    " get the current dir from NERDTree
-    let cd = g:NERDTreeDirNode.GetSelected().path.str()
-
-    exec "NERDRg "" ".cd
+    exec "NERDRg"
 endfunction
 
 function! NERDTreeAck()
@@ -51,8 +48,8 @@ function! NERDTreeAck()
     exec "Ack -i ".pattern." ".cd
 endfunction
 
-command! -nargs=* NERDRg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --fixed-strings --smart-case --hidden --follow '.<q-args>, 1,
-  \   fzf#vim#with_preview('up:60%'), 1)
+command! -bang -nargs=* NERDRg
+	\ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --fixed-strings ".shellescape(<q-args>), 1,
+	\ fzf#vim#with_preview({'dir': g:NERDTreeDirNode.GetSelected().path.str(), 'options': ['--delimiter=:', '--nth=2..', '--info=inline']}),
+	\ <bang>0)
 
