@@ -21,4 +21,4 @@ The code is almost a copypaste from [Mohammad Satrio](https://github.com/tyok)'s
 1. Use `rg` with `fzf`, or `ack.vim`
 
 Interactively typing your search term with fzf preview
-![Preview](https://i.imgur.com/jY5LCh5.gif)
+![Preview](https://i.imgur.com/aldTzAY.gif)
