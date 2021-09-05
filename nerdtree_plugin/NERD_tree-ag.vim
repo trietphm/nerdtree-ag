@@ -32,6 +32,12 @@ call NERDTreeAddMenuItem({
     \ 'callback': 'NERDTreeAck' })
 
 function! NERDTreeRg()
+    let g:NERDTreeAgDir = g:NERDTreeDirNode.GetSelected().path.str()
+    let b:cw = expand('%')
+    if b:cw =~ 'NERD_tree'
+	    exec "wincmd w"
+    endif
+	
     exec "NERDRg"
 endfunction
 

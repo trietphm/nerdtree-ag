@@ -22,3 +22,5 @@ The code is almost a copypaste from [Mohammad Satrio](https://github.com/tyok)'s
 
 Interactively typing your search term with fzf preview
 ![Preview](https://i.imgur.com/aldTzAY.gif)
+
+2. Do not open file inside NERDtree
